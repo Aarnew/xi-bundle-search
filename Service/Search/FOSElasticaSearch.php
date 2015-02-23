@@ -9,11 +9,11 @@ use Symfony\Component\DependencyInjection\Container,
     \Elastica_Result,
     \Elastica_Query,
     Knp\Component\Pager\Pagination,
-    FOQ\ElasticaBundle\Paginator\TransformedPaginatorAdapter,
-    FOQ\ElasticaBundle\Subscriber\PaginateElasticaQuerySubscriber,
+    FOS\ElasticaBundle\Paginator\TransformedPaginatorAdapter,
+    FOS\ElasticaBundle\Subscriber\PaginateElasticaQuerySubscriber,
     Xi\Bundle\SearchBundle\Event\Subscriber\ElasticaQuerySubscriber;
 
-class FOQElasticaSearch implements Search
+class FOSElasticaSearch implements Search
 {
     
     /**
@@ -145,7 +145,7 @@ class FOQElasticaSearch implements Search
      */
     protected function getSearchable($index)
     {
-        return $this->container->get('foq_elastica.index.' . $index);
+        return $this->container->get('fos_elastica.index.' . $index);
     }
 
     /**
@@ -154,7 +154,7 @@ class FOQElasticaSearch implements Search
      */
     protected function getFinder($index)
     {
-        return $this->container->get('foq_elastica.finder.' . $index);
+        return $this->container->get('fos_elastica.finder.' . $index);
     }
 
     /**
@@ -163,6 +163,6 @@ class FOQElasticaSearch implements Search
      */
     protected function getTransformer($index)
     {
-        return $this->container->get('foq_elastica.elastica_to_model_transformer.collection.' . $index);
+        return $this->container->get('fos_elastica.elastica_to_model_transformer.collection.' . $index);
     }
 }

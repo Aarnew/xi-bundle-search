@@ -1,10 +1,10 @@
 services:
     xi_search.service.search:
         class:     Xi\Bundle\SearchBundle\Service\SearchService
-        arguments: ["@form.factory", "@xi_search.service.search.foqelastica_search"]
+        arguments: ["@form.factory", "@xi_search.service.search.foselastica_search"]
 
-    xi_search.service.search.foqelastica_search:
-        class:     Xi\Bundle\SearchBundle\Service\Search\FOQElasticaSearch
+    xi_search.service.search.foselastica_search:
+        class:     Xi\Bundle\SearchBundle\Service\Search\FOSElasticaSearch
         arguments: ["@service_container"]  
  
     search_form.twig.extension:
