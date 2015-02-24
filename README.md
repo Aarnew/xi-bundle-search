@@ -61,7 +61,7 @@ class App.AjaxForm.YourCustomClass extends App.AjaxForm.Default
 ## Integration to ElasticSearch
 
 Probably most easiest way to use this bundle is to use it with ElasticSearch because XiSearchBundle provides you
-premade implementation for it. This however requires [FOSElasticaBundle](https://github.com/Exercise/FOSElasticaBundle) to work.
+premade implementation for it. This however requires [FOSElasticaBundle](https://github.com/FriendsOfSymfony/FOSElasticaBundle) to work.
 
 ## Pagination
 Pagination uses knp-pagination bundle, and it's on by default
