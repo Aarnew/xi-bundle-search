@@ -15,7 +15,7 @@
         "symfony/form": "2.1.*",
         "symfony/dependency-injection": "2.1.*",
         "twig/twig": "1.*",
-        "exercise/elastica-bundle": "dev-master",
+        "friendsofsymfony/elastica-bundle": "dev-master",
         "knplabs/knp-paginator-bundle": "dev-master",
         "xi/ajax-bundle": "dev-master"
     },
