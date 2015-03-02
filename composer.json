@@ -11,13 +11,13 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "symfony/framework-bundle": "2.2.*",
-        "symfony/form": "2.2.*",
-        "symfony/dependency-injection": "2.2.*",
+        "symfony/framework-bundle": "2.3.*",
+        "symfony/form": "2.3.*",
+        "symfony/dependency-injection": "2.3.*",
         "twig/twig": "1.*",
         "friendsofsymfony/elastica-bundle": "~2.0",
         "knplabs/knp-paginator-bundle": "dev-master",
-        "xi/ajax-bundle": "2.2.x-dev"
+        "xi/ajax-bundle": "2.3.x-dev"
     },
     "autoload": {
         "psr-0": {
