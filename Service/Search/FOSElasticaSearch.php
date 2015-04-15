@@ -5,9 +5,9 @@ namespace Xi\Bundle\SearchBundle\Service\Search;
 use Symfony\Component\DependencyInjection\Container,
     Xi\Bundle\SearchBundle\Service\Search\Result\DefaultSearchResultSet,
     Xi\Bundle\SearchBundle\Service\Search\Result\DefaultSearchResult,
-    \Elastica_ResultSet,
-    \Elastica_Result,
-    \Elastica_Query,
+    Elastica\ResultSet as ElasticaResultSet,
+    Elastica\Result as ElasticaResult,
+    Elastica\Query as ElasticaQuery,
     Knp\Component\Pager\Pagination,
     FOS\ElasticaBundle\Paginator\TransformedPaginatorAdapter,
     FOS\ElasticaBundle\Subscriber\PaginateElasticaQuerySubscriber,
@@ -59,7 +59,7 @@ class FOSElasticaSearch implements Search
     {
         $paginator = $this->container->get('knp_paginator');
         $paginator->subscribe(new ElasticaQuerySubscriber());
-        $query = Elastica_Query::create($term);
+        $query = ElasticaQuery::create($term);
 
         $paginationView = $paginator->paginate(array($this->getSearchable($index), $query), $page, $limit);
 
@@ -70,10 +70,10 @@ class FOSElasticaSearch implements Search
     }
 
     /**
-     * @param Elastica_ResultSet $elasticaResultSet
+     * @param Elastica\ResultSet $elasticaResultSet
      * @return \Xi\Bundle\SearchBundle\Service\Search\Result\DefaultSearchResultSet 
      */
-    protected function convertToSearchResult(Elastica_ResultSet $elasticaResultSet)
+    protected function convertToSearchResult(ElasticaResultSet $elasticaResultSet)
     {
         $results = array();
         foreach($elasticaResultSet as $elasticaResult) {
@@ -130,18 +130,19 @@ class FOSElasticaSearch implements Search
      */
     public function createPaginatorAdapter($query, $index)
     {
-        $query = Elastica_Query::create($query);
+        $query = ElasticaQuery::create($query);
 
         return new TransformedPaginatorAdapter(
             $this->getSearchable($index),
             $query,
+            array(),
             $this->getTransformer($index)
         );
     }
 
     /**
      * @param  string $index
-     * @return Elastica_Searchable
+     * @return Elastica\Searchable
      */
     protected function getSearchable($index)
     {

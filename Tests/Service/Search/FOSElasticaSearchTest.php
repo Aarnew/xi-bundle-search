@@ -5,8 +5,8 @@ namespace Xi\Bundle\SearchBundle\Tests\Service\Search;
 use     PHPUnit_Framework_TestCase,
         Xi\Bundle\SearchBundle\Service\Search\FOSElasticaSearch,
         Xi\Bundle\SearchBundle\Service\Search\Search,
-        \Elastica_ResultSet,
-        \Elastica_Searchable,
+        Elastica\ResultSet,
+        Elastica\SearchableInterface,
         Symfony\Component\DependencyInjection\Container;
 
 /**
@@ -26,7 +26,7 @@ class FOSElasticaSearchTest extends PHPUnit_Framework_TestCase
 
         $finderMock = $this->getMockBuilder('FOS\ElasticaBundle\Finder\TransformedFinder')
             ->disableOriginalConstructor()->getMock();
-        $searchableMock = $this->getMockBuilder('Elastica_Searchable')
+        $searchableMock = $this->getMockBuilder('Elastica\SearchableInterface')
             ->disableOriginalConstructor()->getMock();
         $paginatorMock = $this->getMock('Knp\Component\Pager\Paginator', array('paginate'));
         $paginatorMock->expects($this->any())
@@ -50,6 +50,7 @@ class FOSElasticaSearchTest extends PHPUnit_Framework_TestCase
         $this->search = new FOSElasticaSearch(
             $container
         );
+        
 
     }
 
@@ -59,7 +60,7 @@ class FOSElasticaSearchTest extends PHPUnit_Framework_TestCase
      */
     public function convertsToSearchresult()
     {
-        $elasticaResultSet = $this->getMockBuilder('Elastica_ResultSet')->disableOriginalConstructor()->getMock();
+        $elasticaResultSet = $this->getMockBuilder('Elastica\ResultSet')->disableOriginalConstructor()->getMock();
 
         $class = new \ReflectionClass('Xi\Bundle\SearchBundle\Service\Search\FOSElasticaSearch');
         $method = $class->getMethod('convertToSearchResult');
@@ -67,7 +68,7 @@ class FOSElasticaSearchTest extends PHPUnit_Framework_TestCase
 
         $defaultResultSet = $method->invokeArgs($this->search, array($elasticaResultSet));
 
-        $this->assertInstanceOf('\Xi\Bundle\SearchBundle\Service\Search\Result\DefaultSearchResultSet', $defaultResultSet);
+        $this->assertInstanceOf('Xi\Bundle\SearchBundle\Service\Search\Result\DefaultSearchResultSet', $defaultResultSet);
     }
 
     /**
@@ -77,8 +78,8 @@ class FOSElasticaSearchTest extends PHPUnit_Framework_TestCase
     public function createsNewPaginatorAdapter()
     {
         $adapter = $this->search->createPaginatorAdapter('searchterm', 'index');
-
-        $this->assertInstanceOf('\FOS\ElasticaBundle\Paginator\TransformedPaginatorAdapter', $adapter);
+        
+        $this->assertInstanceOf('FOS\ElasticaBundle\Paginator\TransformedPaginatorAdapter', $adapter);
     }
 
     /**
