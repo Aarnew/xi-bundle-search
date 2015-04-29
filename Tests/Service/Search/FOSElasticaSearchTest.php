@@ -79,7 +79,7 @@ class FOSElasticaSearchTest extends PHPUnit_Framework_TestCase
     {
         $adapter = $this->search->createPaginatorAdapter('searchterm', 'index');
         
-        $this->assertInstanceOf('FOS\ElasticaBundle\Paginator\TransformedPaginatorAdapter', $adapter);
+        $this->assertInstanceOf('\FOS\ElasticaBundle\Paginator\TransformedPaginatorAdapter', $adapter);
     }
 
     /**
