@@ -118,7 +118,9 @@ class FOSElasticaSearch implements Search
     public function findPaginated($index, $term, $page = 1, $limit = null)
     {
         $paginator = $this->container->get('knp_paginator');
-        $paginator->subscribe(new PaginateElasticaQuerySubscriber());
+        $subscriber = new PaginateElasticaQuerySubscriber();
+        $subscriber->setRequest($this->container->get('request'));
+        $paginator->subscribe($subscriber);
 
         return $paginator->paginate($this->createPaginatorAdapter($term, $index), $page, $limit);
     }
